@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>MVX JS JS</title>
+    <style>
+        body {
+            padding: 1em;
+        }
+        h1 {
+            font-size: 2.5em;
+        }
+        h1, h2, h3, h4, h5 {
+            margin: 0;
+            padding: 0;
+        }
+        hr {
+            margin-bottom: 2.5em;
+        }
+        .item {
+            border-bottom: 1px solid #ddd;
+            padding: 1em;
+            padding-left: 0;
+        }
+        .exemplo {
+            padding: .25em;
+        }
+
+        .green {
+            color: green;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>MVX JS 1.0.0 - Demo</h1>
+
+    <!-- v-value -->
+    <div class="item">
+        <h2>v-value</h2>
+        <div class="exemplo"><b>var:</b> <span v-value="teste"></span></div>
+        <div class="exemplo"><b>pessoa.nome:</b> <input type="text" v-value="pessoa.nome" onkeyup="pessoa.nome = this.value"></div>
+        <div class="exemplo"><b>pessoa.endereco.rua</b>: <textarea v-value="pessoa.endereco.rua" rows="1" onkeyup="pessoa.endereco.rua = this.value"></textarea></div>
+        <div class="exemplo"><b>pessoa.carros:</b> <span v-value="pessoa.carros"></span></div>
+        <div class="exemplo"><b>pessoa.carros[2]:</b> <span v-value="pessoa.carros[2]"></span></div>
+        <div class="exemplo"><b>pessoa.visinhos[1].nome:</b> <span v-value="pessoa.visinhos[1].nome"></span></div>
+        <div class="exemplo"><b>pessoa.homem</b>: <input type="checkbox" v-value="pessoa.homem"></div>
+    </div>
+
+    <!-- v-text -->
+    <div class="item">
+        <h2>v-text</h2>
+        <div class="exemplo">
+            <select>
+                <option v-text="pessoa.nome"></option>
+            </select>
+        </div>
+    </div>
+
+    <!-- v-repeat -->
+    <div class="item">
+        <h2>v-repeat</h2>
+        <div class="exemplo">
+            <b>pessoa.visinhos:</b>
+            <div v-repeat="pessoa.visinhos">
+                [ <span v-value="nome"></span> - <span v-value="carros"></span> - <span v-value="n"></span> ]
+            </div>
+        </div>
+        <div class="exemplo">
+            <b>pessoa.visinhos:</b>
+            <select v-value="pessoa.visinhos[1].n">
+                <option>(Nenhum)</option>
+                <option v-repeat="pessoa.visinhos" v-value="n" v-text="nome"></option>
+            </select>
+        </div>
+        <div class="exemplo">
+            <b>pessoa.carros:</b>
+            <select v-value="pessoa.carros[1]">
+                <option>(Nenhum)</option>
+                <option v-repeat="pessoa.carros"></option>
+            </select>
+        </div>
+    </div>
+
+    <!-- v-hide -->
+    <div class="item">
+        <h2>v-hide</h2>
+        <div class="exemplo">
+            <b>pessoa.homem:</b> <span v-value="pessoa.homem" v-hide="pessoa.homem"></span>
+        </div>
+    </div>
+
+    <!-- v-show -->
+    <div class="item">
+        <h2>v-show</h2>
+        <div class="exemplo">
+            <b>pessoa.homem:</b> <span v-value="pessoa.homem" v-show="pessoa.homem"></span>
+        </div>
+    </div>
+
+    <!-- v-disabled -->
+    <div class="item">
+        <h2>v-disabled</h2>
+        <div class="exemplo">
+            <div v-disabled="pessoa.homem">
+                <div><b>pessoa.homem:</b></div>
+                <input type="text" v-value="pessoa.homem">
+            </div>
+        </div>
+    </div>
+
+    <!-- v-enabled -->
+    <div class="item">
+        <h2>v-enabled</h2>
+        <div class="exemplo">
+            <div v-enabled="pessoa.homem">
+                <div><b>pessoa.homem:</b></div>
+                <input type="text" v-value="pessoa.homem">
+            </div>
+        </div>
+    </div>
+
+    <!-- v-class -->
+    <div class="item" v-class="pessoa.homem: green italic">
+        <h2>v-class</h2>
+        <div class="exemplo">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </div>
+    </div>
+
+    <script type="text/javascript" src="vdata.js"></script>
+    <script>
+        var teste = "Hello World!!";
+
+        var pessoa = {
+            homem: true,
+            mulher: false,
+            nome: "João da Silva",
+            carros: ["uno", "gol", "focus"],
+            endereco: {
+                rua: "Rua das Araucárias",
+                n: 67,
+            },
+            visinhos: [
+                { nome: "joao", n: 25, carros: ["uno", "gol", "moto"] },
+                { nome: "maria", n: 103, carros: ["clio", "fiesta"] },
+                { nome: "paulo", n: 97, carros: ["jeta", "fusca"] }
+            ]
+        };
+
+        // uso:
+        //mvx.bind();
+
+        //mvx.bind(document.querySelectorAll(".item")[0].querySelectorAll("[v-value]"));
+        //mvx.bind(document.querySelectorAll("[v-repeat]"));
+
+        // retornando os elementos
+        // mvx.bind(function(element) {
+        //     console.log(element);
+        // });
+
+        // mvx.bind(elements, function(element) {
+        //     console.log(element);
+        // });
+
+    </script>
+</body>
+
+</html>
